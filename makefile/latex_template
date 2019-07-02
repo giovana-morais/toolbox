@@ -1,0 +1,30 @@
+LATEX = xelatex --shell-escape
+REPORT = main.pdf
+
+# INSERIR AQUI OS .TEX NECESSÁRIOS
+DEPS = main.tex		\
+       arquivo_qualquer.tex	\
+       referencias.bib
+
+all: $(REPORT)
+
+$(REPORT): $(DEPS)
+	$(LATEX) $<
+	biber $(basename $<)
+	$(LATEX) $<
+	$(LATEX) $<
+
+.PHONY: clean
+clean:
+	rm *.log *.aux *.pdf *.toc *.blg *.bbl *.run.xml *.bcf
+
+read: 
+	@if [ ! -f main.pdf ]; then\
+		echo "Arquivo não existe";\
+		exit 1;\
+	fi
+	@if [ -x "$(command -v zathura)" ]; then\
+	       zathura	main.pdf;\
+	else\
+		evince main.pdf;\
+	fi
