@@ -10,6 +10,7 @@ arquivo="${data_arquivo}-${nome_arquivo}.md"
 echo "Criando arquivo $arquivo"
 
 echo "---" >> $arquivo
+echo "title: " >> $arquivo
 echo "layout: post" >> $arquivo
 echo "date: $(date +"%Y-%m-%d %H:%M")" >> $arquivo
 echo "image: " >> $arquivo
@@ -20,3 +21,4 @@ echo "author: giovanamorais" >> $arquivo
 echo "description: " >> $arquivo
 echo "---" >> $arquivo
 
+vim $arquivo
