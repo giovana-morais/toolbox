@@ -1,6 +1,6 @@
 #!/bin/sh
 # muda o endereço MAC para um outro aleatório
-# é necessário rodar cmo sudo 
+# é necessário rodar cmo sudo
 # mais refs: https://www.ostechnix.com/change-mac-address-linux/
 
 if [ -x "$(command -v ifconfig)" ]; then
@@ -36,15 +36,15 @@ echo "novo mac: $MAC";
 if_="${if_opt[$opt]}"
 
 if [[ $net_opt -eq 0 ]]; then
-	ifconfig $if_ down;
-	ifconfig $if_ hw ether $MAC;
-	ifconfig $if_ up;
-	ifconfig $if | grep HWaddr;
+	ifconfig "$if_" down;
+	ifconfig "$if_" hw ether "$MAC";
+	ifconfig "$if_" up;
+	ifconfig "$if_" | grep HWaddr;
 else
-	ip link set dev $if_ down;
-	ip link set dev $if_ address $MAC;
-	ip link set dev $if_ up;
-	ip link show $if_;
+	ip link set dev "$if_" down;
+	ip link set dev "$if_" address "$MAC";
+	ip link set dev "$if_" up;
+	ip link show "$if_";
 fi
 
 exit;
